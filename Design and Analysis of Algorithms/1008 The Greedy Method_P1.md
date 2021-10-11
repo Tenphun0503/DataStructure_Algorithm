@@ -69,4 +69,57 @@ At every step:
 `why compute xi = c/Wi? -> total price then: x1P1 + x2P2 +,,,+ xnPn`
 
 ### 4 The Minimum Spanning Tree Problem
+Input:  A weighted graph G: **W[1:n,1:n]**, where for non-edges(i,j): W[i,j] = infinity  
+Output: A sapnning tree **T** that has all the nodes of G and minimun weight
+#### *strategy:*
+At every step:
+* select a min-weight edge e out of the remaining edges and delete e from the graph;
+* if e does not create a cycle in T, then add e to T
+
+>? how to do selection and deletion  
+1 ***min-heap*** of weight  
+2 ***sort*** the edges by weight   
+
+>? how to do if check  
+`If each nodes of an edge is in the same small tree, the edge makes the tree cycle`  
+***Union-Find*** can find the root of each node, and also can combine two trees.
+
+#### *time complexity:* `O(ElogE)`
+```
+Proc ComputesMST(in: W[1:n,1:n]; out: T)
+begin
+  int PARENT[1:n] = [-1,-1,...,-1];
+  minheap H[1:E];                                   //O(E) to build the heap
+  Put in T all the n nodes and no edges;
+  while (T has less than n-1 edges) do:
+    e = delete-min(H);        // assume e = (x,y)   // up to E calls to delete-min(): O(ElogE)
+    r1 = F(x); r2 = F(y);     // Find()             // up to E calls to U and F: O(Elogn)
+    if (r1 != r2) then:   
+      U(r1, r2)               // Union()
+    endif
+  end while
+end
+```
+
 ### 5 The Single-Source Shortest Path Problem
+Input: A weight connected graph G: **W[1:n,1:n]**, where for non-edges(i,j): W[i,j] = infinity & A soure node **s** of G  
+Output: Shortest paths from source s to every other node in the graph: **Distance[1:n]**, where Distance[i] is s to i
+
+#### *time complexity:* `O(n^2)`
+```
+Proc SSSP( in:W[1:n,1:n], s; out: DIST[1:n]);
+begin
+  for i =1 to n do: DIST[i] := W[s,i]; endfor
+  // implement Y as Boolean array Y[1:n] : Y[i]= 1 if i ∈Y, 0 otherwise
+  Boolean Y[1:n]; // initialized to 0
+  Y[s] := 1; // add s to set Y
+  for num =2 to n do
+    Select a node u from out of Y (i.e., Y[u]==0) such that DIST[u] = min {DIST[i] | Y[i] = 0};
+    Y[u] := 1; // Add u to Y
+    // update the DIST values of the other nodes
+    for all node v where Y[v] = 0 do
+      DIST[v]= min (DIST[v], DIST[u]+W[u,v]);
+    endfor
+  endfor
+end
+```
