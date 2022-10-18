@@ -18,10 +18,10 @@ At every step:
 #### *time complexity：* `O(n^2)`
 
 ### 1.2. Greedy Sort 2
-In order to find the minimun faster, use data structure -- ***min-heap***
+In order to find the minimum faster, use data structure -- ***min-heap***
 #### *strategy：*
 At every step:
-* creat ***min-heap*** of the input
+* create ***min-heap*** of the input
 * do ***delete_min()*** (This func does both the selection and deletion)
 #### *time complexity：* `O(nlogn)`
 
@@ -70,7 +70,7 @@ At every step:
 
 ### 4 The Minimum Spanning Tree Problem
 Input:  A weighted graph G: **W[1:n,1:n]**, where for non-edges(i,j): W[i,j] = infinity  
-Output: A sapnning tree **T** that has all the nodes of G and minimun weight
+Output: A spanning tree **T** that has all the nodes of G and minimum weight
 #### *strategy:*
 At every step:
 * select a min-weight edge e out of the remaining edges and delete e from the graph;
@@ -101,8 +101,8 @@ begin
 end
 ```
 
-### 5 The Single-Source Shortest Path Problem
-Input: A weight connected graph G: **W[1:n,1:n]**, where for non-edges(i,j): W[i,j] = infinity & A soure node **s** of G  
+### 5 The Single-Source The Shortest Path Problem
+Input: A weight connected graph G: **W[1:n,1:n]**, where for non-edges(i,j): W[i,j] = infinity & A source node **s** of G  
 Output: Shortest paths from source s to every other node in the graph: **Distance[1:n]**, where Distance[i] is s to i
 
 #### *time complexity:* `O(n^2)`
