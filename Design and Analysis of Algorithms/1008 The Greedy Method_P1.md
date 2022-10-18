@@ -3,7 +3,7 @@ the greedy method is primarily an ***Optimization*** technique
 
 ### *General strategy：*
 At every step:  
-* selcet the ***best*** element from the ***remaining input***
+* select the ***best*** element from the ***remaining input***
 * delete it from the input, and put it in the output
 
 ---
